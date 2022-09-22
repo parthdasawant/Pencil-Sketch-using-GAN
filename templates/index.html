@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>site</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<div class="container">
+		<div class="navbar">
+			<div class="logo-container">
+				<img src="NormalMap.png" alt="logo" class="logo">
+				<p>Company</p>
+			</div>
+			<ul class="links">
+				<li><a href="./index.html">Home</a></li>
+				<li><a href="./about.html">About</a></li>
+			</ul>
+		</div>
+
+		<div class="content">
+			<div class="info-container">
+				<h1>Pencil Sketch Using GANs.</h1>
+				<p>Artistic Pencil Drawing Generation combines with a specialized image-to-image network to generate high quality and expressive artistic drawings from real photos.</p>
+				<button type="button" class="btn"><span class="slide"></span>DEMO</button>
+			</div>
+
+			<div class="image-container">
+				<img src="log.svg" alt="image" class="side-image">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

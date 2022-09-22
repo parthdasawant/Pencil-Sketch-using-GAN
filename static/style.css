@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&family=Roboto+Mono&display=swap');
+
+*, *::before, *::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Amaranth', sans-serif;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('./background.jpeg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+	height: 25%;
+	width: 85%;
+	padding: 50px 0;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logo-container {
+	display: flex;
+	align-items: center;
+	font-size: 3rem;
+	gap: 1.5rem;
+	color: white;
+	font-weight: bold;
+	transition: 0.5s ease-out;
+	cursor: pointer;
+}
+
+.logo {
+	width: 100px;
+	cursor: pointer;
+	transition: 0.5s ease-out;
+}
+
+.logo:hover {
+	scale: 1.1;
+}
+
+.logo-container p {
+	transition: 0.3s ease-out;
+}
+
+.logo-container p:hover {
+	color: #009688;
+}
+
+.navbar ul li {
+	list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  position: relative;
+}
+
+.navbar ul li:first-child {
+	margin-right: 2rem;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+
+.navbar ul li::after {
+  content: '';
+  height: 3px;
+  width: 0;
+  background: #009688;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  transition: 0.5s;
+}
+
+.navbar ul li:hover::after {
+	width: 100%;
+}
+
+.content {
+	display: flex;
+	align-items: center;
+	gap: 150px;
+
+}
+
+.info-container {
+	width: 60%;
+	display: flex;
+	/* align-items: center; */
+	justify-content: center;
+	color: white;
+	flex-direction: column;
+	padding: 0 0 0 8rem;
+	transform: translateY(-40px);
+	z-index: 2;
+}
+
+.info-container h1 {
+	font-size: 5rem;
+	margin-bottom: 30px;
+	width: 80%;
+	color: #009688;
+}
+
+.info-container p {
+	font-size: 1.3rem;
+	border-left: 3px solid white;
+	padding-left: 30px;
+	line-height: 30px;
+	font-family: 'Roboto Mono', monospace;
+}
+
+.btn {
+	width: 5.5em;
+	margin: 2.5rem 2.5rem;
+	padding: 1rem 2rem;
+	text-align: center;
+	font-size: 2rem;
+	font-weight: bold;
+	background: none;
+	color: white;
+	border: none;
+	box-shadow: 0 0 0 3px #009688;
+	position: relative;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 2;
+}
+
+.slide {
+	background: #009688;
+  height: 100%;
+  width: 0%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.btn:hover .slide {
+	width: 100%;
+}
+
+.image-container {
+	width: 30%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.image-container img {
+	width: 35em;
+	transform: translate(-9rem, -50px);
+	z-index: 1;
+}
