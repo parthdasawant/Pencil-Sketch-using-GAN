@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&family=Roboto+Mono&display=swap');
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -10,11 +12,11 @@
 .container {
 	width: 100vw;
 	height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('./background.jpeg');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
+	background-image: url('background.jpeg'), linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
 }
 
 .navbar {
@@ -60,9 +62,9 @@
 
 .navbar ul li {
 	list-style: none;
-  display: inline-block;
-  margin: 0 20px;
-  position: relative;
+	display: inline-block;
+	margin: 0 20px;
+	position: relative;
 }
 
 .navbar ul li:first-child {
@@ -70,21 +72,21 @@
 }
 
 .navbar ul li a {
-  text-decoration: none;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 1.5rem;
+	text-decoration: none;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.5rem;
 }
 
 .navbar ul li::after {
-  content: '';
-  height: 3px;
-  width: 0;
-  background: #009688;
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  transition: 0.5s;
+	content: '';
+	height: 3px;
+	width: 0;
+	background: #009688;
+	position: absolute;
+	left: 0;
+	bottom: -10px;
+	transition: 0.5s;
 }
 
 .navbar ul li:hover::after {
@@ -144,13 +146,13 @@
 
 .slide {
 	background: #009688;
-  height: 100%;
-  width: 0%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: -1;
-  transition: 0.5s;
+	height: 100%;
+	width: 0%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+	transition: 0.5s;
 }
 
 .btn:hover .slide {
@@ -158,7 +160,9 @@
 }
 
 .image-container {
+	height: 40%;
 	width: 30%;
+	background-image: url('log.svg');
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
