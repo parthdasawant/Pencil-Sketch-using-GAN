@@ -3,8 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>site</title>
+	<title>Sketch</title>
 	<link rel="stylesheet" href="./static/css/styles.css">
+	<link rel="stylesheet" href="./static/css/project.css">
 </head>
 <body>
 	<div class="container" id="container">
@@ -19,14 +20,30 @@
 			</ul>
 		</div>
 
-		<div class="content" id="content">
-			<h1>Pencil Sketch Using GANs.</h1>
-			<p>Artistic Pencil Drawing Generation combines with a specialized image-to-image network to generate high quality and expressive artistic drawings from real photos.</p>
-			<button type="button" class="btn"><a href="./project.html"><span class="slide"></span>Get Started</a></button>
+		
+		<div class="main-wrapper">
+			<div class="boxes">
+				<div class="left-box">
+					<div class="box input">
+						<img src="./static/images/google-docs.png" class="center" draggable="false" alt="image">
+						<img src="./static/images/google-docs.png" class="left" draggable="false" alt="image">
+						<img src="./static/images/google-docs.png" class="right" draggable="false" alt="image">
+						<div class="title">Drag and drop the file</div>
+					</div>
+					<div class="input-buttons">
+						<button class="btns upload">Upload</button>
+						<button class="btns Camera">Camera</button>
+					</div>
+				</div>
+				<div class="right-box">
+					<div class="box output"></div>
+					<button class="btns refresh">Download</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/vendor/three.r119.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/vendor/three.r119.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/tengbao/vanta@master/dist/vanta.net.min.js"></script>
   <script>
     VANTA.NET({
