@@ -1,90 +1,126 @@
 .navbar {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .main-wrapper {
-	height: 80%;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	gap: 3rem;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .boxes {
-	display: flex;
-	gap: 10rem;
+  display: flex;
+  gap: 10rem;
 }
 
-.left-box, .right-box {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 2rem;
+.left-box,
+.right-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
 }
 
 .box {
-	width: 400px;
-	height: 400px;
-	background-color: rgba(255, 255, 255, .6);
-	border-radius: 30px;
+  width: 400px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 30px;
 }
 
 .input {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-.input img {
-	width: 100px;
-	height: 100px;
-	position: absolute;
-	transform-origin: bottom;
+.input > .center, .left, .right {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform-origin: bottom;
 }
 
 .input .center {
-	z-index: 2;
+  z-index: 2;
 }
 
-.input .left, .input .right {
-	scale: .9;
+.input .left,
+.input .right {
+  scale: 0.9;
 }
 
 .input .right {
-	transform: rotate(10deg) translateX(20px);
+  transform: rotate(10deg) translateX(20px);
 }
 
 .input .left {
-	transform: rotate(-10deg) translateX(-20px);
+  transform: rotate(-10deg) translateX(-20px);
 }
 
 .title {
-	translate: 0 80px;
-	font-family: 'Barlow Semi Condensed', sans-serif;
-	font-size: 1.4rem;
-	font-weight: 600;
+  translate: 0 80px;
+  /* text-align: center; */
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .input-buttons {
-	display: flex;
-	gap: 2rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .btns {
-	width: 10rem;
-	padding: 10px 20px;
-	border: none;
-	box-shadow: 0 0 0 2px rgba(255, 255, 255, .6);
-	color: white;
-	font-size: 1.2rem;
-	font-weight: 500;
-	background: none;
-	border-radius: 20px;
-	transition: .3s ease-out;
+  width: 10rem;
+  padding: 10px 20px;
+  border: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  background: none;
+  border-radius: 20px;
+  transition: 0.3s ease-out;
 }
 
 .btns:hover {
-	color: black;
-	background: rgba(255, 255, 255, 0.6);
+  color: black;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.video-container {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+
+.video {
+  width: 700px;
+  height: 700px;
+}
+
+.video-container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  position: absolute;
+  overflow: hidden;
+  display: none;
 }
