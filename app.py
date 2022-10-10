@@ -11,7 +11,7 @@ import logging
 app = Flask(__name__)
 
 #logging for app 
-logging.basicConfig(level = logging.DEBUG, filename ="log.log", filemode="a", format = "%(asctime)s - %(levelname)s - %(message)s" ) 
+logging.basicConfig(level = logging.DEBUG, filename ="log.txt", filemode="a", format = "%(asctime)s - %(levelname)s - %(message)s" ) 
 logger = logging.getLogger (__name__)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s' )
 
