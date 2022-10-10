@@ -101,3 +101,8 @@
 2022-10-01 00:26:43,129 - INFO - 127.0.0.1 - - [01/Oct/2022 00:26:43] "[36mGET /static/css/project.css HTTP/1.1[0m" 304 -
 2022-10-01 00:26:43,150 - INFO - 127.0.0.1 - - [01/Oct/2022 00:26:43] "[36mGET /static/images/companyLogo.png HTTP/1.1[0m" 304 -
 2022-10-01 00:26:43,152 - INFO - 127.0.0.1 - - [01/Oct/2022 00:26:43] "[36mGET /static/images/google-docs.png HTTP/1.1[0m" 304 -
+2022-10-10 18:25:21,800 - INFO -  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+2022-10-10 18:25:26,092 - INFO - Index.html page working
+2022-10-10 18:25:26,100 - INFO - 127.0.0.1 - - [10/Oct/2022 18:25:26] "GET / HTTP/1.1" 200 -
+2022-10-10 18:25:26,828 - INFO - 127.0.0.1 - - [10/Oct/2022 18:25:26] "[36mGET /static/images/companyLogo.png HTTP/1.1[0m" 304 -
+2022-10-10 18:25:26,836 - INFO - 127.0.0.1 - - [10/Oct/2022 18:25:26] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
