@@ -6,6 +6,7 @@
 	<title>Sketch</title>
 	<link rel="stylesheet" href="./static/css/styles.css">
 	<link rel="stylesheet" href="./static/css/project.css">
+  <script src="./static/js/main.js" defer></script>
 </head>
 <body>
 	<div class="container" id="container">
@@ -24,15 +25,17 @@
 		<div class="main-wrapper">
 			<div class="boxes">
 				<div class="left-box">
-					<div class="box input">
+          <div class="box input">
+            <img src="" alt="" class="uploaded-image">
 						<img src="./static/images/google-docs.png" class="center" draggable="false" alt="image">
 						<img src="./static/images/google-docs.png" class="left" draggable="false" alt="image">
 						<img src="./static/images/google-docs.png" class="right" draggable="false" alt="image">
 						<div class="title">Drag and drop the file</div>
 					</div>
 					<div class="input-buttons">
-						<button class="btns upload">Upload</button>
-						<button class="btns Camera">Camera</button>
+            <input type="file" name="" id="fileInput" style="display: none;">
+						<button class="btns upload" id="upload" onclick="uploadImage()">Upload</button>
+						<button class="btns Camera" id="cameraBtn">Camera</button>
 					</div>
 				</div>
 				<div class="right-box">
@@ -41,6 +44,13 @@
 				</div>
 			</div>
 		</div>
+    <div class="video-container" id="video-container">
+      <video autoplay="true" id="video" class="video"></video>
+      <div>
+        <button class="btns" id="capture">Capture</button>
+        <button class="btns" id="cancel">Close</button>
+      </div>
+    </div>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/vendor/three.r119.min.js"></script>
