@@ -13,6 +13,8 @@
 .boxes {
   display: flex;
   gap: 10rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .left-box,
@@ -38,7 +40,9 @@
   position: relative;
 }
 
-.input > .center, .left, .right {
+.input>.center,
+.left,
+.right {
   width: 100px;
   height: 100px;
   position: absolute;
@@ -110,7 +114,7 @@
   height: 700px;
 }
 
-.video-container > div {
+.video-container>div {
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -123,4 +127,10 @@
   position: absolute;
   overflow: hidden;
   display: none;
+}
+
+.transform {
+  height: 10em;
+  width: 10rem;
+  padding: 10px 20px;
 }

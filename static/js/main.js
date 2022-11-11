@@ -37,35 +37,40 @@ function closeCamera() {
 
 function captureImage() {
   const canvas = document.createElement('canvas')
-  canvas.getContext('2d').drawImage(videoElement, 0, 0, 500, 500)
-  let image_data_url = canvas.toDataURL('image/jpeg')
+  canvas.width = 600
+  canvas.height = 400
+  canvas.getContext('2d').drawImage(videoElement, 0, 0, 600, 400)//460, 260)//
+  let image_data_url = canvas.toDataURL('images/')
 
   console.log(image_data_url)
-
   closeCamera()
+  image.setAttribute('src', image_data_url)
+  image.style.display = 'block'
 }
 
 function uploadImage() {
   fileInputBtn.click()
+  // image.setAttribute('src', image)
+  // image.style.display = 'block'
 }
 
 cameraBtn.addEventListener('click', startCamera)
 cancelBtn.addEventListener('click', closeCamera)
 captureBtn.addEventListener('click', captureImage)
-// uploadBtn.addEventListener('click', uploadImage)
+uploadBtn.addEventListener('click', uploadImage)
 fileInputBtn.addEventListener('change', (e) => {
   console.log(this.files)
-  // const file = this.file[0]
-  // console.log()
-  // if (file) {
-  //   const reader = new FileReader()
-  //   reader.onload = function() {
-  //     const result = reader.result
-  //     image.src = result
-  //   }
-  //   reader.readAsDataURL(file)
-  //   image.style.display = 'block'
-  // }
+  const file = this.files
+  console.log()
+  if (file) {
+    const reader = new FileReader()
+    reader.onload = function () {
+      const result = reader.result
+      image.src = result
+    }
+    reader.readAsDataURL(file)
+    image.style.display = 'block'
+  }
   image.src = e.target.value
   image.style.display = 'block'
 })
