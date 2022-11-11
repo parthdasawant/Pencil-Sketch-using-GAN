@@ -12,7 +12,7 @@
 
 .boxes {
   display: flex;
-  gap: 10rem;
+  gap: 5rem;
 }
 
 .left-box,
@@ -38,7 +38,9 @@
   position: relative;
 }
 
-.input > .center, .left, .right {
+.input > .center,
+.left,
+.right {
   width: 100px;
   height: 100px;
   position: absolute;
@@ -126,5 +128,9 @@
 }
 
 .transform {
-
+  /* width: 150px; */
+  padding: 0 20px;
+  height: 50px;
+  justify-self: center;
+  align-self: center;
 }
