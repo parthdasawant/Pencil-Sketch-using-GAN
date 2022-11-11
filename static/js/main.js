@@ -2,7 +2,7 @@ const cameraBtn = document.getElementById('cameraBtn')
 const captureBtn = document.getElementById('capture')
 const cancelBtn = document.getElementById('cancel')
 const uploadBtn = document.getElementById('upload')
-const fileInputBtn = document.getElementById('fileInput')
+const fileInputBtn = document.getElementById('fileInput') //inputelement->css hidden
 const videoElement = document.getElementById('video')
 const videoContainer = document.getElementById('video-container')
 const image = document.querySelector('.uploaded-image')
@@ -40,9 +40,10 @@ function captureImage() {
   canvas.getContext('2d').drawImage(videoElement, 0, 0, 500, 500)
   let image_data_url = canvas.toDataURL('image/jpeg')
 
-  console.log(image_data_url)
 
   closeCamera()
+image.setAttribute('src', image_data_url) 
+image.style.display = 'block'
 }
 
 function uploadImage() {
