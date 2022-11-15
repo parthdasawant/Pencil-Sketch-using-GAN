@@ -110,7 +110,7 @@
   height: 700px;
 }
 
-.video-container > div {
+.video-container>div {
   display: flex;
   flex-direction: column;
   gap: 3rem;
