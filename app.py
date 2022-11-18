@@ -10,22 +10,30 @@ import logging
 
 app = Flask(__name__)
 
-#logging for 
-logging.basicConfig(level = logging.DEBUG, filename ="log.txt", filemode="a", format = "%(asctime)s - %(levelname)s - %(message)s" ) 
-logger = logging.getLogger (__name__)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s' )
+# logging 
+#logs
+#--dayswise
+logging.basicConfig(level=logging.DEBUG, filename="log.txt",
+                    filemode="a", format="%(asctime)s - %(levelname)s - %(message)s")
+logger = logging.getLogger(__name__)
+formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
 app = Flask(__name__)
+
+
 @app.route("/")
 def index():
     app.logger.info('Index.html page working')
     return render_template("index.html")
 
+
 @app.route("/about.html")
 def about():
     app.logger.info('about.html page working')
     return render_template("about.html")
+
 
 @app.route("/project.html")
 def project():
