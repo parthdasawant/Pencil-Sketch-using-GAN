@@ -52,16 +52,16 @@ function captureImage() {
   image.style.display = 'block'
 }
 
-function uploadImage() {
-  fileInputBtn.click()
-  // image.setAttribute('src', image)
-  // image.style.display = 'block'
-}
+// function uploadImage() {
+//   fileInputBtn.click()
+//   // image.setAttribute('src', image)
+//   // image.style.display = 'block'
+// }
 
 cameraBtn.addEventListener('click', startCamera)
 cancelBtn.addEventListener('click', closeCamera)
 captureBtn.addEventListener('click', captureImage)
-uploadBtn.addEventListener('click', uploadImage)
+// uploadBtn.addEventListener('click', uploadImage)
 fileInputBtn.addEventListener('change', (e) => {
   console.log(this.files)
   const file = this.files

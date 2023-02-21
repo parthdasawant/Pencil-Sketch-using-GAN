@@ -28,23 +28,34 @@
 			<div class="boxes">
 				<div class="left-box">
 					<div class="box input">
+						{% if filename %}
+						<img src=" data:image/jpeg;base64,{{filename}}">
+						{% else %}
 						<img src="" alt="" class="uploaded-image">
 						<img src="./static/images/google-docs.png" class="center" draggable="false" alt="image">
 						<img src="./static/images/google-docs.png" class="left" draggable="false" alt="image">
 						<img src="./static/images/google-docs.png" class="right" draggable="false" alt="image">
 						<div class="title">Drag and drop the file</div>
+						{% endif %}
 					</div>
 					<div class="input-buttons">
-						<input type="file" name="" id="fileInput" style="display: none;">
-						<button class="btns upload" id="upload">Upload</button>
-						<button class="btns Camera" id="cameraBtn">Camera</button>
-						<!-- <button class="btns">Transform</button> -->
+						<form action="" method="POST" enctype="multipart/form-data">
+							<input type="file" name="file" id="file">
+							<button class="btns upload" id="upload" type="submit">Upload</button>
+							<button class="btns Camera" id="cameraBtn">Camera</button>
+							<!-- <button class="btns">Transform</button> -->
+						</form>
 					</div>
+					<button class="btns transform">Transform</button>
 				</div>
-				<button class="btns transform" onclick= "">Transform</button>
 				<div class="right-box">
 					<div class="box output">
 						<!-- output image place -->
+						{% if outputname %}
+						<img src=" data:image/jpeg;base64,{{outputname}}">
+						{% else %}
+						<!-- <img src="C: \\Users\\PARTH\\Pencil-Sketch-using-GAN\\predicted.jpg" alt="image" class="image"> -->
+						{% endif %}
 					</div>
 					<button class="btns refresh">Download</button>
 				</div>
