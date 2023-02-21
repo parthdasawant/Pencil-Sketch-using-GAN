@@ -43,6 +43,10 @@ function captureImage() {
   let image_data_url = canvas.toDataURL('images/')
 
   console.log(image_data_url)
+  sp=image_data_url.split(';')
+  sp=sp[1]
+  sp=sp.split(',')
+  console.log(sp)
   closeCamera()
   image.setAttribute('src', image_data_url)
   image.style.display = 'block'
@@ -63,7 +67,7 @@ fileInputBtn.addEventListener('change', (e) => {
   const file = this.files
   console.log()
   if (file) {
-    const reader = new FileReader()
+    // const reader = new FileReader()
     reader.onload = function () {
       const result = reader.result
       image.src = result
@@ -73,4 +77,5 @@ fileInputBtn.addEventListener('change', (e) => {
   }
   image.src = e.target.value
   image.style.display = 'block'
+  console.log(file)
 })
