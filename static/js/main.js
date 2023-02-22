@@ -62,20 +62,20 @@ cameraBtn.addEventListener('click', startCamera)
 cancelBtn.addEventListener('click', closeCamera)
 captureBtn.addEventListener('click', captureImage)
 // uploadBtn.addEventListener('click', uploadImage)
-fileInputBtn.addEventListener('change', (e) => {
-  console.log(this.files)
-  const file = this.files
-  console.log()
-  if (file) {
-    // const reader = new FileReader()
-    reader.onload = function () {
-      const result = reader.result
-      image.src = result
-    }
-    reader.readAsDataURL(file)
-    image.style.display = 'block'
-  }
-  image.src = e.target.value
-  image.style.display = 'block'
-  console.log(file)
-})
+// fileInputBtn.addEventListener('change', (e) => {
+//   console.log(this.files)
+//   const file = this.files
+//   console.log()
+//   if (file) {
+//     // const reader = new FileReader()
+//     reader.onload = function () {
+//       const result = reader.result
+//       image.src = result
+//     }
+//     reader.readAsDataURL(file)
+//     image.style.display = 'block'
+//   }
+//   image.src = e.target.value
+//   image.style.display = 'block'
+//   console.log(file)
+// })
