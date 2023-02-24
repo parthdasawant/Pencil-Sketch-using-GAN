@@ -4,14 +4,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Sketch</title>
+	<title>Pencil Sketch using GAN</title>
 	<link rel="stylesheet" href="./static/css/styles.css">
 	<link rel="stylesheet" href="./static/css/project.css">
 	<script src="./static/js/main.js" defer></script>
 </head>
 
 <body>
-	<div class="container" id="container">
+	<div class="container" id="container" style="background-color:rgb(62, 58, 58);">
 		<div class="navbar">
 			<div class="logo-container">
 				<img src="./static/images/companyLogo.png" alt="logo" class="logo">
@@ -28,22 +28,38 @@
 			<div class="boxes">
 				<div class="left-box">
 					<div class="box input">
+						{% if filename %}
+						<img src=" data:image/jpeg;base64,{{filename}}">
+						{% else %}
 						<img src="" alt="" class="uploaded-image">
 						<img src="./static/images/google-docs.png" class="center" draggable="false" alt="image">
 						<img src="./static/images/google-docs.png" class="left" draggable="false" alt="image">
 						<img src="./static/images/google-docs.png" class="right" draggable="false" alt="image">
 						<div class="title">Drag and drop the file</div>
+						{% endif %}
 					</div>
 					<div class="input-buttons">
-						<input type="file" name="" id="fileInput" style="display: none;">
-						<button class="btns upload" id="upload" onclick="uploadImage()">Upload</button>
-						<button class="btns Camera" id="cameraBtn">Camera</button>
-						<!-- <button class="btns">Transform</button> -->
+						<form action="" method="POST" enctype="multipart/form-data">
+							<input type="file" name="file" id="file" required>
+							<button class="btns upload" id="upload" type="submit">Upload</button>
+							<!-- <button class="btns">Transform</button> -->
+						</form>
 					</div>
+					<button class="btns Camera" id="cameraBtn" onclick="captureImage()">Camera</button>
+					<a href="/transform"><button class="btns transform">
+						Transform
+					</button>
+					</a>
 				</div>
-				<button class="btns transform">Transform</button>
 				<div class="right-box">
-					<div class="box output"></div>
+					<div class="box output">
+						<!-- output image place -->
+						{% if outputname %}
+						<img src=" data:image/jpeg;base64,{{outputname}}">
+						{% else %}
+						<!-- <img src="C: \\Users\\PARTH\\Pencil-Sketch-using-GAN\\predicted.jpg" alt="image" class="image"> -->
+						{% endif %}
+					</div>
 					<button class="btns refresh">Download</button>
 				</div>
 			</div>
@@ -58,7 +74,7 @@
 		</div>
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/vendor/three.r119.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/vendor/three.r119.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/gh/tengbao/vanta@master/dist/vanta.net.min.js"></script>
 	<script>
 		VANTA.NET({
@@ -75,7 +91,7 @@
 			points: 16.00,
 			spacing: 17.00
 		})
-	</script>
+	</script> -->
 </body>
 
 </html>
