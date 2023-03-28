@@ -37,9 +37,9 @@ function closeCamera() {
 
 function captureImage() {
   const canvas = document.createElement('canvas')
-  canvas.width = 600
-  canvas.height = 400
-  canvas.getContext('2d').drawImage(videoElement, 0, 0, 600, 400)//460, 260)//
+  canvas.width = 400
+  canvas.height = 267
+  canvas.getContext('2d').drawImage(videoElement, 0, 0, 400, 267)//460, 260)//
   let image_data_url = canvas.toDataURL('images/')
 
   console.log(image_data_url)

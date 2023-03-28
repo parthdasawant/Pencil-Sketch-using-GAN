@@ -52,32 +52,18 @@ def upload_file():
     if request.method == 'POST':
         f = request.files['file']
         # image = f
-        filename= secure_filename(f.filename)
+        # filename= secure_filename(f.filename)
+        filename="input.jpeg"
         garrey.append(filename)
         f.save(filename)
+        image = cv2.imread(filename, cv2.COLOR_BGR2RGB)
+        image = cv2.resize(image, (400, 400))
+        cv2.imwrite(filename,image)
         img = Image.open(filename)
         data = io.BytesIO()
         img.save(data, "JPEG")
         encode_img_data = base64.b64encode(data.getvalue())
-
         print(f)
-        # image = cv2.imread(filename, cv2.COLOR_BGR2RGB)
-        # # modeltest(image)
-        # print(image)
-        # image = cv2.resize(image, (256, 256))
-        # img2 = (image-127.5)/127.5
-        # img = np.reshape(img2, (-1, 256, 256, 3))
-        # loaded_styled_generator = tf.keras.models.load_model(
-        #     'C:\\Users\\PARTH\\Desktop\\rev\\saved_model\\styled_generator')
-
-        # pred_letter = loaded_styled_generator(img, training=False)[0].numpy()
-        # pred_letter = (pred_letter*127.5 + 127.5).astype(np.uint8)
-        # cv2.imwrite(outputname, pred_letter)
-        # img2 = Image.open(outputname)
-        # data = io.BytesIO()
-        # img2.save(data, "JPEG")
-        # encode_img_data2 = base64.b64encode(data.getvalue())
-
         return render_template('project.html/', filename=encode_img_data.decode("UTF-8"))
     
 @app.route('/transform', methods=['GET', 'POST'])
@@ -96,10 +82,11 @@ def transform():
             img2 = (image-127.5)/127.5
             img = np.reshape(img2, (-1, 256, 256, 3))
             loaded_styled_generator = tf.keras.models.load_model(
-                'C:\\Users\\PARTH\\Desktop\\rev\\saved_model\\styled_generator')
+                'C:\\Users\\PARTH\\Desktop\\saved_model\\styled_generator')
 
             pred_letter = loaded_styled_generator(img, training=False)[0].numpy()
             pred_letter = (pred_letter*127.5 + 127.5).astype(np.uint8)
+            pred_letter = cv2.resize(pred_letter,(400,400))
             cv2.imwrite(outputname, pred_letter)
             img2 = Image.open(outputname)
             data = io.BytesIO()
