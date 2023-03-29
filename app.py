@@ -65,7 +65,7 @@ def upload_file():
         encode_img_data = base64.b64encode(data.getvalue())
         print(f)
         return render_template('project.html/', filename=encode_img_data.decode("UTF-8"))
-    
+
 @app.route('/transform', methods=['GET', 'POST'])
 def transform():
     try:
@@ -92,26 +92,13 @@ def transform():
             data = io.BytesIO()
             img2.save(data, "JPEG")
             encode_img_data2 = base64.b64encode(data.getvalue())
-            return render_template('project.html', filename=encode_img_data.decode(("UTF-8")), outputname=encode_img_data2.decode("UTF-8"))
+            # redirect(url_for('/project.html'))
+            return render_template('project.html', filename=encode_img_data.decode(("UTF-8")), outputname=encode_img_data2.decode("UTF-8"),flag=0)
         else:
             flash('upload image or capture newone before proceeding','error')
             print('else')
     except:
         flash('upload image or capture newone before proceeding','error')
-
-def modeltest(image):
-    # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-    img = cv2.resize(image, (256, 256))
-
-    img2 = (img-127.5)/127.5
-    img = np.reshape(img2, (-1, 256, 256, 3))
-    loaded_styled_generator = tf.keras.models.load_model(
-        'C:\\Users\\PARTH\\Desktop\\rev\\saved_model\\styled_generator')
-
-    pred_letter = loaded_styled_generator(img2, training=False)[0].numpy()
-    pred_letter = (pred_letter*127.5 + 127.5).astype(np.uint8)
-    pred_letter.save('output.jpg')
-    return 'sucsess'
 
 
 if __name__ == "__main__":
