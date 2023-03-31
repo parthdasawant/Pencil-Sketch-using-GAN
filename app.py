@@ -1,5 +1,6 @@
 import base64
 import io
+import PIL
 from flask import (
     Flask, flash, render_template, request,
     redirect, url_for, session
@@ -14,6 +15,9 @@ from PIL import Image
 from werkzeug.utils import secure_filename
 gfilename=""
 outputname="pred_letter.jpeg"
+size=[]
+# width=400
+# height=400
 app = Flask(__name__)
 
 # logging
@@ -56,14 +60,12 @@ def upload_file():
         filename="input.jpeg"
         garrey.append(filename)
         f.save(filename)
-        image = cv2.imread(filename, cv2.COLOR_BGR2RGB)
-        image = cv2.resize(image, (400, 400))
-        cv2.imwrite(filename,image)
+        resizeinbox(filename)
+        
         img = Image.open(filename)
         data = io.BytesIO()
         img.save(data, "JPEG")
         encode_img_data = base64.b64encode(data.getvalue())
-        print(f)
         return render_template('project.html/', filename=encode_img_data.decode("UTF-8"))
 
 @app.route('/transform', methods=['GET', 'POST'])
@@ -86,7 +88,9 @@ def transform():
 
             pred_letter = loaded_styled_generator(img, training=False)[0].numpy()
             pred_letter = (pred_letter*127.5 + 127.5).astype(np.uint8)
-            pred_letter = cv2.resize(pred_letter,(400,400))
+            width=size.pop()
+            height=size.pop()
+            pred_letter = cv2.resize(pred_letter,(width,height))
             cv2.imwrite(outputname, pred_letter)
             img2 = Image.open(outputname)
             data = io.BytesIO()
@@ -99,6 +103,28 @@ def transform():
             print('else')
     except:
         flash('upload image or capture newone before proceeding','error')
+
+def resizeinbox(filename):
+    fixed_size = 400
+    image = Image.open(filename)
+    if float(image.size[1])<400 and float(image.size[0])<400:
+        size.append(image.size[1])
+        size.append(image.size[0]) 
+    elif float(image.size[1])>float(image.size[0]):
+        height_percent = (fixed_size / float(image.size[1]))
+        width_size = int((float(image.size[0]) * float(height_percent)))
+        image = image.resize((width_size, fixed_size), PIL.Image.NEAREST)
+        image.save(filename)
+        size.append(fixed_size)
+        size.append(width_size) 
+    else:
+        height_percent = (fixed_size / float(image.size[0]))
+        width_size = int((float(image.size[1]) * float(height_percent)))
+        image = image.resize((fixed_size, width_size), PIL.Image.NEAREST)
+        image.save(filename)
+        size.append(width_size) 
+        size.append(fixed_size)
+
 
 
 if __name__ == "__main__":
