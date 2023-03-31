@@ -70,15 +70,15 @@
 					{% endif %}						
 				</div>
 				<div class="right-box">
+					<!-- output image place -->
+					{% if outputname %}
 					<div class="box output">
-						<!-- output image place -->
-						{% if outputname %}
 						<img src=" data:image/jpeg;base64,{{outputname}}">
-						{% else %}
-						<!-- <img src="C: \\Users\\PARTH\\Pencil-Sketch-using-GAN\\predicted.jpg" alt="image" class="image"> -->
-						{% endif %}
+						<button class="btns refresh">Download</button>
 					</div>
-					<button class="btns refresh">Download</button>
+					{% else %}
+						<!-- <img src="C: \\Users\\PARTH\\Pencil-Sketch-using-GAN\\predicted.jpg" alt="image" class="image"> -->
+					{% endif %}
 				</div>
 			</div>
 		</div>

@@ -58,7 +58,7 @@ function captureImage() {
 //   // image.style.display = 'block'
 // }
 
-cameraBtn.addEventListener('click', startCamera)
+// cameraBtn.addEventListener('click', startCamera)
 cancelBtn.addEventListener('click', closeCamera)
 captureBtn.addEventListener('click', captureImage)
 // uploadBtn.addEventListener('click', uploadImage)
