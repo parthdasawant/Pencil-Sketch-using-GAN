@@ -84,7 +84,7 @@ def transform():
             img2 = (image-127.5)/127.5
             img = np.reshape(img2, (-1, 256, 256, 3))
             loaded_styled_generator = tf.keras.models.load_model(
-                'saved_model\styled_generator')
+                'C:\\Users\\PARTH\\Desktop\\saved_model\\styled_generator')#give local model path 
 
             pred_letter = loaded_styled_generator(img, training=False)[0].numpy()
             pred_letter = (pred_letter*127.5 + 127.5).astype(np.uint8)
