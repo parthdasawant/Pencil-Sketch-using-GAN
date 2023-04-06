@@ -21,13 +21,13 @@ size=[]
 app = Flask(__name__)
 
 # logging
-logging.basicConfig(level=logging.DEBUG, filename="log.txt",
+logging.basicConfig(level=logging.DEBUG, filename="log.log",
                     filemode="a", format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 formatter = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-app.config["IMAGE_UPLOADS"]="C:\\Users\\PARTH\\Pencil-Sketch-using-GAN\\static\\images"
+
 
 
 garrey=[]
@@ -47,7 +47,6 @@ def about():
 @app.route("/project.html")
 def project():
     app.logger.info('project.html page working')
-    app.logger.critical('Haven\'t implemented yet')
     return render_template("project.html")
 
 
@@ -55,13 +54,11 @@ def project():
 def upload_file():
     if request.method == 'POST':
         f = request.files['file']
-        # image = f
-        # filename= secure_filename(f.filename)
         filename="input.jpeg"
+        app.logger.info('Got Input image')
         garrey.append(filename)
         f.save(filename)
         resizeinbox(filename)
-        
         img = Image.open(filename)
         data = io.BytesIO()
         img.save(data, "JPEG")
@@ -78,11 +75,10 @@ def transform():
             img.save(data, "JPEG")
             encode_img_data = base64.b64encode(data.getvalue())
             image = cv2.imread(filename, cv2.COLOR_BGR2RGB)
-                # modeltest(image)
-
             image = cv2.resize(image, (256, 256))
             img2 = (image-127.5)/127.5
             img = np.reshape(img2, (-1, 256, 256, 3))
+            app.logger.info('input image is normalize as per model requirements')
             loaded_styled_generator = tf.keras.models.load_model(
                 'C:\\Users\\PARTH\\Desktop\\saved_model\\styled_generator')#give local model path 
 
@@ -95,8 +91,8 @@ def transform():
             img2 = Image.open(outputname)
             data = io.BytesIO()
             img2.save(data, "JPEG")
+            app.logger.info('got model predicted image')
             encode_img_data2 = base64.b64encode(data.getvalue())
-            # redirect(url_for('/project.html'))
             return render_template('project.html', filename=encode_img_data.decode(("UTF-8")), outputname=encode_img_data2.decode("UTF-8"),flag=0)
         else:
             flash('upload image or capture newone before proceeding','error')
@@ -124,7 +120,7 @@ def resizeinbox(filename):
         image.save(filename)
         size.append(width_size) 
         size.append(fixed_size)
-
+    app.logger.info('resizeinbox() working fine')
 
 
 if __name__ == "__main__":
