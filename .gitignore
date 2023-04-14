@@ -6,7 +6,9 @@ log.txt
 *.png
 *.jpg
 *.tiff
-
+*req.txt
+Dockerfile
+old.txt
 ### Flask ###
 instance/*
 !instance/.gitignore
