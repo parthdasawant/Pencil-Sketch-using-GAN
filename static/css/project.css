@@ -37,6 +37,12 @@
   align-items: center;
   position: relative;
 }
+.output {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
 
 .input > .center, .left, .right {
   width: 100px;

@@ -52,6 +52,15 @@ function captureImage() {
   image.style.display = 'block'
 }
 
+function downloadImage(imagePath) {
+  var link = document.createElement('a');
+  link.download = 'image.jpeg';
+  link.href = imagePath;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 // function uploadImage() {
 //   fileInputBtn.click()
 //   // image.setAttribute('src', image)

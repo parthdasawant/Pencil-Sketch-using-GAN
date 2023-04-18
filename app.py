@@ -3,16 +3,20 @@ import io
 import os
 import PIL
 from flask import (
-    Flask, flash, render_template, request
+    Flask, flash, render_template, request, send_file
 )
 import numpy as np
 import logging
 import cv2
+import requests
 import tensorflow as tf
 from PIL import Image
+import bs4
 outputname="pred_letter.jpeg"
 size=[]
 garrey=[]
+ogname=[]
+ogsize=[]
 
 # logging
 logging.basicConfig(level=logging.DEBUG, filename="log.log",
@@ -97,6 +101,15 @@ def transform():
     except:
         app.logger.critical('transform function failed')
         flash('upload image or capture newone before proceeding','error')
+
+@app.route('/download')
+def download_file():
+	#path = "html2pdf.pdf"
+	#path = "info.xlsx"
+	path = "pred_letter.jpeg"
+	#path = "sample.txt"
+	return send_file(path, as_attachment=True)
+
 
 def resizeinbox(filename):
     fixed_size = 400

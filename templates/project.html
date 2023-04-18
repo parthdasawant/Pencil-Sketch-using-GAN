@@ -66,20 +66,22 @@
 					<a href="/project.html"><button class="btns transform">
 						Retry
 					</button>
-					
+					</a>
 					{% endif %}						
 				</div>
+				<!-- output image place -->
 				<div class="right-box">
-					<!-- output image place -->
-					{% if outputname %}
 					<div class="box output">
+						{% if outputname %}
 						<img src=" data:image/jpeg;base64,{{outputname}}">
-						<button class="btns refresh">Download</button>
 					</div>
-					{% else %}
-						<!-- <img src="C: \\Users\\PARTH\\Pencil-Sketch-using-GAN\\predicted.jpg" alt="image" class="image"> -->
-					{% endif %}
+					<a href="{{ url_for('.download_file') }}"><button class="btns refresh">Download</button></a>
+					<!-- <button class="btns refresh" onclick="downloadImage('./pred_letter.jpeg')">Download </button> -->
+
 				</div>
+				{% else %}
+						<!-- <img src="C: \\Users\\PARTH\\Pencil-Sketch-using-GAN\\predicted.jpg" alt="image" class="image"> -->
+				{% endif %}
 			</div>
 		</div>
 		<div class="video-container" id="video-container">
