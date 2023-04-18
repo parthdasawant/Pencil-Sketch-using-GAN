@@ -104,21 +104,25 @@ def transform():
 
 @app.route('/download')
 def download_file():
-	#path = "html2pdf.pdf"
-	#path = "info.xlsx"
-	path = "pred_letter.jpeg"
-	#path = "sample.txt"
-	return send_file(path, as_attachment=True)
+    ogheight=ogsize.pop()
+    ogwidth=ogsize.pop()
+    # tempimg=cv2.imread(outputname,cv2.COLOR_BGR2RGB)
+    # tempimg= cv2.resize(tempimg,(ogwidth,ogheight))
+    # cv2.imwrite(outputname, tempimg)
+    path = "pred_letter.jpeg"
+    return send_file(path, as_attachment=True)
 
 
 def resizeinbox(filename):
     fixed_size = 400
     image = Image.open(filename)
     if float(image.size[1])<400 and float(image.size[0])<400:
-        size.append(image.size[1])
         size.append(image.size[0])
+        size.append(image.size[1])
         app.logger.info('given image dim < 400') 
     elif float(image.size[1])>float(image.size[0]):
+        ogsize.append(image.size[0])
+        ogsize.append(image.size[1])
         height_percent = (fixed_size / float(image.size[1]))
         width_size = int((float(image.size[0]) * float(height_percent)))
         image = image.resize((width_size, fixed_size), PIL.Image.NEAREST)
@@ -127,6 +131,8 @@ def resizeinbox(filename):
         size.append(width_size) 
         app.logger.info('given image is potrait')
     else:
+        ogsize.append(image.size[0])
+        ogsize.append(image.size[1])
         height_percent = (fixed_size / float(image.size[0]))
         width_size = int((float(image.size[1]) * float(height_percent)))
         image = image.resize((fixed_size, width_size), PIL.Image.NEAREST)

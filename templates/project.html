@@ -60,7 +60,7 @@
 					<div class="loader"></div>
 					
 					{% elif not outputname and not filename %}
-					<!-- <button class="btns Camera" id="cameraBtn" onclick="captureImage()">Camera</button> -->
+					<button class="btns Camera" id="cameraBtn" onclick="captureImage()">Camera</button>
 					{%else%}
 					
 					<a href="/project.html"><button class="btns transform">
@@ -83,15 +83,16 @@
 						<!-- <img src="C: \\Users\\PARTH\\Pencil-Sketch-using-GAN\\predicted.jpg" alt="image" class="image"> -->
 				{% endif %}
 			</div>
-		</div>
-		<div class="video-container" id="video-container">
-			<video autoplay="true" id="video" class="video"></video>
-			<div>
-				<button class="btns" id="capture">Capture</button>
-				<button class="btns" id="cancel">Close</button>
-
+			<div class="video-container" id="video-container">
+				<video autoplay="true" id="video" class="video"></video>
+				<div>
+					<button class="btns" id="capture">Capture</button>
+					<button class="btns" id="cancel">Close</button>
+				</div>
+					
+				</div>
 			</div>
-		</div>
+	
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/vendor/three.r119.min.js"></script>
