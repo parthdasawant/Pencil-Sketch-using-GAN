@@ -62,7 +62,7 @@ def upload_file():
         data = io.BytesIO()
         img.save(data, "JPEG")
         encode_img_data = base64.b64encode(data.getvalue())
-        return render_template('project.html/', filename=encode_img_data.decode("UTF-8"))
+        return render_template('project.html', filename=encode_img_data.decode("UTF-8"))
 
 @app.route('/transform', methods=['GET', 'POST'])
 def transform():
@@ -111,6 +111,25 @@ def download_file():
     # cv2.imwrite(outputname, tempimg)
     path = "pred_letter.jpeg"
     return send_file(path, as_attachment=True)
+
+@app.route('/capture', methods=['GET','POST'])
+def capture():
+    if request.method == 'POST':       
+        filename="input.jpeg"
+        img_data = request.files['img'].read()
+        nparr = np.frombuffer(img_data, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        cv2.imwrite(filename,img)
+        # Process the captured image here
+        app.logger.info('Input image caputred')
+        garrey.append(filename)
+        resizeinbox(filename)
+        app.logger.info('resizeinbox() is done on input image')
+        img = Image.open(filename)
+        data = io.BytesIO()
+        img.save(data, "JPEG")
+        encode_img_data = base64.b64encode(data.getvalue())
+        return render_template('project.html', filename=encode_img_data.decode("UTF-8"))
 
 
 def resizeinbox(filename):
