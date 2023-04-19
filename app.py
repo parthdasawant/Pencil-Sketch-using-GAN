@@ -51,8 +51,8 @@ def project():
 @app.route('/project.html', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        f = request.files['file']
         filename="input.jpeg"
+        f = request.files['file']
         app.logger.info('Input image uploaded')
         garrey.append(filename)
         f.save(filename)
@@ -63,6 +63,7 @@ def upload_file():
         img.save(data, "JPEG")
         encode_img_data = base64.b64encode(data.getvalue())
         return render_template('project.html', filename=encode_img_data.decode("UTF-8"))
+
 
 @app.route('/transform', methods=['GET', 'POST'])
 def transform():
@@ -94,7 +95,7 @@ def transform():
             img2.save(data, "JPEG")
             app.logger.info('Predicted image going to output box')
             encode_img_data2 = base64.b64encode(data.getvalue())
-            return render_template('project.html', filename=encode_img_data.decode(("UTF-8")), outputname=encode_img_data2.decode("UTF-8"),flag=0)
+            return render_template('project.html', filename=encode_img_data.decode(("UTF-8")), outputname=encode_img_data2.decode("UTF-8"))
         else:
             flash('upload image or capture newone before proceeding','error')
             print('else')
@@ -120,6 +121,7 @@ def capture():
         nparr = np.frombuffer(img_data, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
         cv2.imwrite(filename,img)
+        garrey.append(filename)
         # Process the captured image here
         app.logger.info('Input image caputred')
         garrey.append(filename)
@@ -128,7 +130,9 @@ def capture():
         img = Image.open(filename)
         data = io.BytesIO()
         img.save(data, "JPEG")
+        app.logger.info('save2')
         encode_img_data = base64.b64encode(data.getvalue())
+        app.logger.info('encoded')
         return render_template('project.html', filename=encode_img_data.decode("UTF-8"))
 
 
