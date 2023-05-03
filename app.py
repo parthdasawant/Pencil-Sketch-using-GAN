@@ -8,10 +8,10 @@ from flask import (
 import numpy as np
 import logging
 import cv2
-import requests
+
 import tensorflow as tf
 from PIL import Image
-import bs4
+
 outputname="pred_letter.jpeg"
 size=[]
 garrey=[]
@@ -124,7 +124,6 @@ def capture():
         garrey.append(filename)
         # Process the captured image here
         app.logger.info('Input image caputred')
-        garrey.append(filename)
         resizeinbox(filename)
         app.logger.info('resizeinbox() is done on input image')
         img = Image.open(filename)

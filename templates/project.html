@@ -38,27 +38,33 @@
 				<div class="left-box">
 					<div class="box input">
 						{% if filename %}
-						<img src=" data:image/jpeg;base64,{{filename}}">
+						<img id="image" src=" data:image/jpeg;base64,{{filename}}">
 						{% else %}
 						<div class="input-buttons">
-							<form action="" method="POST" enctype="multipart/form-data">
+							<form action="" method="POST" enctype="multipart/form-data" class="form-position">
 								<input type="file" name="file" id="file" required>
 								<button class="btns upload" id="upload" type="submit">Upload</button>
 								<!-- <button class="btns">Transform</button> -->
 							</form>
+							<div class="input-buttons stack-top">
+								<canvas id="canvas" width="400" height="400">
+								</canvas>
+							</div>
+							<button class="btns upload camera" id="start">Camera</button>
 						</div>
 						{% endif %}
 					</div>
 
-					<a href="/transform">
-						<!-- <button class="btns transform" onclick="{flag=1}">
-							Transform 
-						</button> -->
-						<button>Transform <span class="load loading"></span>
-						</button>
-					</a>
+					
 
 					{% if filename and not outputname %}
+					<!-- <a href="/transform">
+						<button class="btns transform" onclick="{flag=1}">
+							Transform 
+						</button>
+						<button>Transform <span class="load loading"></span>
+						</button>
+					</a> -->
 					<a href="/transform">
 						<!-- <button class="btns transform" onclick="{flag=1}">
 							Transform 
@@ -66,18 +72,23 @@
 						<button>Transform <span class="load loading"></span>
 						</button>
 					</a>
+					
 					<a href="/project.html"><button class="btns transform">
 							Retry
 						</button>
 					</a>
 					{% elif not outputname and filename %}
 					<div class="box input">
-
 						<img src=" data:image/jpeg;base64,{{filename}}">
 					</div>
 					{% elif not outputname and not filename %}
-
-					<button class="btns Camera" id="start">Camera</button>
+					<a href="/transform">
+						<!-- <button class="btns transform" onclick="{flag=1}">
+							Transform 
+						</button> -->
+						<button>Transform <span class="load loading"></span>
+						</button>
+					</a>
 					{%else%}
 
 					<a href="/project.html"><button class="btns transform">
@@ -107,10 +118,12 @@
 	<script>
 		var video = document.getElementById('video');
 		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
 		var startButton = document.getElementById('start');
 		var captureButton = document.getElementById('capture');
 		var cancelBtn = document.getElementById('cancel');
-		var videoContainer = document.getElementById('video-container')
+		var videoContainer = document.getElementById('video-container');
+		var image = document.getElementById('image');
 		startButton.addEventListener('click', () => {
 			navigator.mediaDevices.getUserMedia({ video: true })
 				.then(stream => {
@@ -125,11 +138,10 @@
 		});
 
 		captureButton.addEventListener('click', () => {
+			// document.getElementById('image').src = "input.jpeg
 			video.pause();
-			var canvas = document.createElement('canvas');
-			canvas.width = video.videoWidth;
-			canvas.height = video.videoHeight;
-			canvas.getContext('2d').drawImage(video, 0, 0);
+			// closeCamera();
+			context.drawImage(video, 0, 0, 400, 400);
 			canvas.toBlob((blob) => {
 				var formData = new FormData();
 				formData.append('img', blob, 'image.jpg');
@@ -141,7 +153,11 @@
 					.then(result => {
 						console.log(result);
 					})
-					.then(closeCamera())
+					.then(()=>{
+						closeCamera();
+						document.getElementById('image').src = "./input.jpeg";
+						
+					})
 					.catch(error => {
 						cameraBtn.click()
 						console.error('Error capturing image', error);

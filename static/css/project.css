@@ -88,8 +88,31 @@
   height: 100%;
 }
 
+.stack-top {
+  margin: 0px;
+}
+
 form {
   height: auto;
+}
+
+.form-position {
+  position: absolute;
+  left: 25%;
+  top: 30%;
+}
+
+.form-position::before {
+  content: "--------------or--------------";
+  position: absolute;
+  top: 97%;
+  left:7%;
+}
+
+.camera {
+  position: absolute;
+  left: 25%;
+  top: 60%;
 }
 
 .btns {
