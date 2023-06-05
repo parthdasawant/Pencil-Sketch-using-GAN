@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pencil Sketch using GAN</title>
+	<link rel="stylesheet" href="./static/css/styles.css">
+	<link rel="stylesheet" href="./static/css/project.css">
+	<script src="./static/js/main.js" defer></script>
+</head>
+
+<body>
+	<div class="container" id="container">
+		<div class="navbar">
+			<div class="logo-container"><a href="/"></a>
+
+				<img src="./static/images/companyLogo.png" alt="logo" class="logo">
+				<p>Kernel Mappers</p>
+			</div>
+			<ul class="links">
+				<li><a href="/">Home</a></li>
+				<li><a href="./about.html">About</a></li>
+			</ul>
+		</div>
+
+		<div class="video-container" id="video-container">
+			<video autoplay="true" id="video" class="video" width="640" height="480"></video>
+			<form id="captureForm" method="POST" enctype="multipart/form-data"></form>
+			<div>
+				<button class="btns" id="capture" type="submit">Capture</button>
+				<button class="btns" id="cancel">Close</button>
+			</div>
+			</form>
+		</div>
+		<div class="main-wrapper">
+			<div class="boxes">
+				<div class="left-box">
+					<div class="box input">
+						{% if filename %}
+						<img id="image" src=" data:image/jpeg;base64,{{filename}}">
+						{% else %}
+						<div class="input-buttons">
+							<form action="" method="POST" enctype="multipart/form-data" class="form-position">
+								<input type="file" name="file" id="file" required>
+								<button class="btns upload" id="upload" type="submit">Upload</button>
+								<!-- <button class="btns">Transform</button> -->
+							</form>
+							<div class="input-buttons stack-top">
+								<canvas id="canvas" width="400" height="400">
+								</canvas>
+							</div>
+							<button class="btns upload camera" id="start">Camera</button>
+						</div>
+						{% endif %}
+					</div>
+
+					
+
+					{% if filename and not outputname %}
+					<!-- <a href="/transform">
+						<button class="btns transform" onclick="{flag=1}">
+							Transform 
+						</button>
+						<button>Transform <span class="load loading"></span>
+						</button>
+					</a> -->
+					<a href="/transform">
+						<!-- <button class="btns transform" onclick="{flag=1}">
+							Transform 
+						</button> -->
+						<button>Transform <span class="load loading"></span>
+						</button>
+					</a>
+					
+					<a href="/project.html"><button class="btns transform">
+							Retry
+						</button>
+					</a>
+					{% elif not outputname and filename %}
+					<div class="box input">
+						<img src=" data:image/jpeg;base64,{{filename}}">
+					</div>
+					{% elif not outputname and not filename %}
+					<a href="/transform">
+						<!-- <button class="btns transform" onclick="{flag=1}">
+							Transform 
+						</button> -->
+						<button>Transform <span class="load loading"></span>
+						</button>
+					</a>
+					{%else%}
+
+					<a href="/project.html"><button class="btns transform">
+							Retry
+						</button>
+					</a>
+					{% endif %}
+				</div>
+				<!-- output image place -->
+				<div class="right-box">
+					<div class="box output">
+						{% if outputname %}
+						<img src=" data:image/jpeg;base64,{{outputname}}">
+					</div>
+					<a href="{{ url_for('.download_file') }}"><button class="btns refresh">Download</button></a>
+					<!-- <button class="btns refresh" onclick="downloadImage('./pred_letter.jpeg')">Download </button> -->
+
+				</div>
+				{% else %}
+				<!-- <img src="C: \\Users\\PARTH\\Pencil-Sketch-using-GAN\\predicted.jpg" alt="image" class="image"> -->
+				{% endif %}
+			</div>
+
+		</div>
+
+	</div>
+	<script>
+		var video = document.getElementById('video');
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var startButton = document.getElementById('start');
+		var captureButton = document.getElementById('capture');
+		var cancelBtn = document.getElementById('cancel');
+		var videoContainer = document.getElementById('video-container');
+		var image = document.getElementById('image');
+		startButton.addEventListener('click', () => {
+			navigator.mediaDevices.getUserMedia({ video: true })
+				.then(stream => {
+					video.srcObject = stream;
+					videoContainer.style.display = 'flex'
+					video.play();
+				})
+				.catch(err => {
+					cameraBtn.click()
+					console.error('Error accessing camera', err);
+				});
+		});
+
+		captureButton.addEventListener('click', () => {
+			// document.getElementById('image').src = "input.jpeg
+			video.pause();
+			// closeCamera();
+			context.drawImage(video, 0, 0, 400, 400);
+			canvas.toBlob((blob) => {
+				var formData = new FormData();
+				formData.append('img', blob, 'image.jpg');
+				fetch('/capture', {
+					method: 'POST',
+					body: formData
+				})
+					.then(response => response.text())
+					.then(result => {
+						console.log(result);
+					})
+					.then(()=>{
+						closeCamera();
+						document.getElementById('image').src = "./input.jpeg";
+						
+					})
+					.catch(error => {
+						cameraBtn.click()
+						console.error('Error capturing image', error);
+					});
+			});
+		});
+		function closeCamera() {
+			let stream = video.srcObject
+			let tracks = stream.getTracks()
+			for (let i = 0; i < tracks.length; i++) {
+				let track = tracks[i]
+				track.stop()
+			}
+			video.srcObject = null
+			videoContainer.style.display = 'none'
+		};
+		cancelBtn.addEventListener('click', () => {
+			closeCamera();
+		})
+
+
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/vendor/three.r119.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/tengbao/vanta@master/dist/vanta.net.min.js"></script>
+	<script>
+		VANTA.NET({
+			el: "#container",
+			mouseControls: true,
+			touchControls: true,
+			gyroControls: false,
+			minHeight: 200.00,
+			minWidth: 200.00,
+			scale: 1.00,
+			scaleMobile: 1.00,
+			color: 0x4192c0,
+			backgroundColor: 0x111118,
+			points: 16.00,
+			spacing: 17.00
+		})
+	</script>
+	<script>
+		const btns = document.querySelectorAll('button');
+		btns.forEach((items) => {
+			items.addEventListener('click', (evt) => {
+				evt.target.classList.add('activeLoading');
+			})
+		})
+	</script>
+</body>
+
+</html>

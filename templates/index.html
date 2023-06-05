@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pencil Sketch using GAN</title>
+	<link rel="stylesheet" href="./static/css/styles.css">
+</head>
+<body>
+	<div class="container" id="container">
+		<div class="navbar">
+			<div class="logo-container">
+				<img src="./static/images/companyLogo.png" alt="logo" class="logo">
+				<p>Kernel Mappers</p>
+			</div>
+			<ul class="links">
+				<!-- <li><a href="/">Home</a></li> -->
+				<li><a href="./about.html">About</a></li>
+			</ul>
+		</div>
+
+		<div class="content" id="content">
+			<h1>Pencil Sketch Using GANs.</h1>
+			<p>Artistic Pencil Drawing Generation combines with a specialized image-to-image network to generate high quality and expressive artistic drawings from real photos.</p>
+			<button type="button" class="btn"><a href="./project.html"><span class="slide"></span>Get Started</a></button>
+		</div>
+	</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/vendor/three.r119.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/tengbao/vanta@master/dist/vanta.net.min.js"></script>
+  <script>
+    VANTA.NET({
+      el: "#container",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x4192c0,
+      backgroundColor: 0x111118,
+      points: 16.00,
+      spacing: 17.00
+    })
+  </script>
+</body>
+</html>
