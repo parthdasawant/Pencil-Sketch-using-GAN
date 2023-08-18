@@ -10,3 +10,7 @@ To enhance the accessibility and usability of the pencil sketch generation syste
 The integration of Flask will allow seamless communication between the front-end and back-end of the website, facilitating efficient image processing and sketch generation. The website will be designed to provide a smooth and interactive user experience.
 
 Overall, the project, sponsored by Amritansh, aims to develop an advanced image-to-sketch conversion system. By leveraging GANs, Kaggle datasets, and Flask website integration, the project will provide users with an intuitive platform to generate realistic pencil sketches from their images.
+
+
+Kaggle Link
+https://www.kaggle.com/code/pencilsketch/pencil-sketch-using-gan/notebook
